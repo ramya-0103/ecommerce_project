@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shopping Cart{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card shadow-sm mb-4">
+            <div class="card-body">
+                <a class="btn btn-outline-dark mb-4" href="{% url 'store' %}">&#x2190; Continue Shopping</a>
+
+                <h4 class="mb-3">Cart Summary</h4>
+                <div class="d-flex justify-content-between">
+                    <h5>Items: <strong>{{ order.get_cart_items }}</strong></h5>
+                    <h5>Total:<strong> ${{ order.get_cart_total|floatformat:2 }}</strong></h5>
+                </div>
+                
+                <a href="{% url 'checkout' %}" class="btn btn-success btn-lg float-end mt-3">Proceed to Checkout</a>
+            </div>
+        </div>
+
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <div class="cart-row header p-2 bg-light border-bottom fw-bold">
+                    <div style="width:20%">Item</div>
+                    <div style="width:25%">Product</div>
+                    <div style="width:15%">Price</div>
+                    <div style="width:20%">Quantity</div>
+                    <div style="width:15%">Total</div>
+                </div>
+
+                {% for item in items %}
+                <div class="cart-row row align-items-center border-bottom py-3">
+                    <div style="width:20%">
+                        <img class="img-fluid" src="{{ item.product.imageURL }}" style="width: 100px;">
+                    </div>
+                    <div style="width:25%">
+                        <p>{{ item.product.name }}</p>
+                    </div>
+                    <div style="width:15%">
+                        <p>${{ item.product.price|floatformat:2 }}</p>
+                    </div>
+                    <div style="width:20%" class="d-flex align-items-center">
+                        <p class="quantity me-2">{{ item.quantity }}</p>
+                        <div class="quantity-controls d-flex flex-column">
+                            <span data-product="{{ item.product.id }}" data-action="add" class="update-cart badge bg-primary mb-1" style="cursor:pointer;">+</span>
+                            <span data-product="{{ item.product.id }}" data-action="remove" class="update-cart badge bg-secondary" style="cursor:pointer;">-</span>
+                        </div>
+                    </div>
+                    <div style="width:15%">
+                        <p>${{ item.get_total|floatformat:2 }}</p>
+                    </div>
+                </div>
+                {% empty %}
+                <p class="text-center p-3">Your cart is empty.</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,29 @@
+/* Custom styles for login and register pages */
+.auth-container {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8fafc;
+}
+.auth-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2.5rem 2rem;
+  max-width: 400px;
+  width: 100%;
+}
+.auth-title {
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.auth-btn {
+  width: 100%;
+  font-weight: 600;
+}
+.auth-link {
+  text-align: center;
+  margin-top: 1rem;
+}
