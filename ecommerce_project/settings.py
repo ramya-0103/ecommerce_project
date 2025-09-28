@@ -8,9 +8,14 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = 'django-insecure-change-this-to-your-own-secret-key'
 
-DEBUG = True   # ❌ Set to False when deploying
+DEBUG = False  # ❌ Always False in production
 
-ALLOWED_HOSTS = []  # Example for deployment: ['yourapp.onrender.com']
+# ✅ Add your Render domain here
+ALLOWED_HOSTS = [
+    "ecommerce-project-qa8u.onrender.com",  # your Render URL
+    "localhost",
+    "127.0.0.1",
+]
 
 
 # ------------------------------------------------------
@@ -109,9 +114,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # 👉 Your static files live inside app: store/static/store/ (auth.css etc.)
-# So no need for BASE_DIR/static unless you add it manually.
 STATICFILES_DIRS = [
-    BASE_DIR / "store" / "static",   # ✅ picks up store/static/store/auth.css
+    BASE_DIR / "store" / "static",
 ]
 
 # Where collectstatic will copy everything for deployment
