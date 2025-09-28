@@ -55,7 +55,8 @@ ROOT_URLCONF = 'ecommerce_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates"],  # global templates folder
+        # global templates folder (optional, you can put common templates here)
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -106,9 +107,17 @@ USE_TZ = True
 # STATIC & MEDIA FILES
 # ------------------------------------------------------
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / "static"]
+
+# 👉 Your static files live inside app: store/static/store/ (auth.css etc.)
+# So no need for BASE_DIR/static unless you add it manually.
+STATICFILES_DIRS = [
+    BASE_DIR / "store" / "static",   # ✅ picks up store/static/store/auth.css
+]
+
+# Where collectstatic will copy everything for deployment
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
+# Media (uploaded product images)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "media"
 

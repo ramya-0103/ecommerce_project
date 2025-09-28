@@ -21,5 +21,7 @@ urlpatterns = [
     path('api/token/', auth_views.obtain_auth_token, name='api_token_auth'),
 ]
 
+# ✅ Serve static + media files in development
 if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
